@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/mariosv/atari_rl/environments')
+sys.path.append('/atari_rl/environments')
 
 #from atari_rl.agents.deepq.deepq import DQNAgent
 #from atari_rl.environments.wrapper import AtariPreprocessing
