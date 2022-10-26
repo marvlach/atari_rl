@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/mariosv/atari_rl/environments')
+sys.path.append('/atari_rl/environments')
 
 
 #from vanilla_ac import ActorCriticAgent

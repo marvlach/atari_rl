@@ -1,12 +1,11 @@
 import sys
-sys.path.append('/home/mariosv/atari_rl')
 import os
 import tensorflow as tf
 import numpy as np
 import random
 import gym
 import csv
-from gym.wrappers import Monitor
+from gym.wrappers.record_video import RecordVideo
 from queue import Queue
 import threading
 from worker import Worker
@@ -30,15 +29,18 @@ class CuriosityActorCriticAgent():
 
 		if self.env_wrapper is not None:# for atari
 			env = self.env_wrapper(gym.make(self.game_name))
-			self.test_env = self.env_wrapper(Monitor(gym.make(self.game_name),
-								os.path.join(self.save_dir, self.agent_name, self.game_name, 'video'),
-								force=True, video_callable=lambda episode_id: episode_id % 20 == 0))
-
+			self.test_env = self.env_wrapper(
+				RecordVideo(gym.make(self.game_name), 
+				os.path.join(self.save_dir, self.agent_name, self.game_name, 'video'),  
+				episode_trigger = lambda episode_number: episode_number % 10 == 0)
+			)
 		else:
 			env = gym.make(self.game_name)
-			self.test_env = Monitor(gym.make(self.game_name), os.path.join(self.save_dir, self.agent_name, self.game_name, 'video'),
-						force=True, video_callable=lambda episode_id: episode_id % 20 == 0)
-
+			self.test_env = RecordVideo(
+				gym.make(self.game_name), 
+				os.path.join(self.save_dir, self.agent_name, self.game_name, 'video'),
+				episode_trigger = lambda episode_number: episode_number % 10 == 0
+			)
 		self.obs_shape = env.observation_space.shape
 
 		# assert that observations are images
