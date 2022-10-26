@@ -1,3 +1,5 @@
 results
 build_image.sh
-build_image_behind_proxy.sh
+run_container.sh
+README.md
+Dockerfile

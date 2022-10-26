@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 -y && apt-get upgra
 RUN pip install gym[atari,accept-rom-license]==0.26.2
 
 # install open cv
-RUN pip install opencv-python
+RUN pip install opencv-python==4.5.5.64
 
 COPY . ./
 
